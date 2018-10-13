@@ -1,0 +1,5 @@
+C:\Michal\VS\Neural\NeuralNet\obj\Debug\NeuralNet.csproj.CoreCompileInputs.cache
+C:\Michal\VS\Neural\NeuralNet\bin\Debug\NeuralNetwork.dll
+C:\Michal\VS\Neural\NeuralNet\bin\Debug\NeuralNetwork.pdb
+C:\Michal\VS\Neural\NeuralNet\obj\Debug\NeuralNetwork.dll
+C:\Michal\VS\Neural\NeuralNet\obj\Debug\NeuralNetwork.pdb
