@@ -183,13 +183,18 @@ namespace Neural
             {
                 List<string> fileContent = new List<string>();
 
+                tbFileName.Text = "Loading learning data, please wait...";
+                tbFileName.Refresh();
+
                 FileInfo fiLearnFile = new FileInfo(ofdOpen.FileName);
                 StreamReader sr = new StreamReader(fiLearnFile.FullName);
 
                 String line = sr.ReadLine();
                 while (line != null)
                 {
-                    fileContent.Add(line);
+                    if (line.Length > 0) 
+                        fileContent.Add(line);
+                    
                     line = sr.ReadLine();
                 }
                 sr.Close();

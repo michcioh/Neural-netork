@@ -68,5 +68,16 @@ namespace NeuralNet
                 (withBias ? inputWithBiasCount : inputWithBiasCount - 1) :
                 inputWithBiasCount;
         }
+
+        public int GetAllNeuronsCount()
+        {
+            int count = 0;
+            foreach (Layer layer in Layers)
+            {
+                count += layer.Neurons.Count;
+            }
+
+            return count;
+        }
     }
 }

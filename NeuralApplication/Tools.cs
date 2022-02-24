@@ -29,9 +29,7 @@ namespace Neural
                 xmlDocument.Save(fileName);
                 stream.Close();
             }
-
         }
-
 
         /// <summary>
         /// Deserializes an xml file into an object list

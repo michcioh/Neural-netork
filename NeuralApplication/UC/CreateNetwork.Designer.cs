@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bCreateNetwork = new System.Windows.Forms.Button();
             this.pContent = new System.Windows.Forms.Panel();
             this.lTitle = new System.Windows.Forms.Label();
@@ -187,10 +187,10 @@
             this.nudMaxWeight.TabIndex = 39;
             this.nudMaxWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudMaxWeight.Value = new decimal(new int[] {
-            3,
+            1,
             0,
             0,
-            65536});
+            0});
             // 
             // nudMinWeight
             // 
@@ -205,6 +205,11 @@
             this.nudMinWeight.Size = new System.Drawing.Size(81, 25);
             this.nudMinWeight.TabIndex = 11;
             this.nudMinWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudMinWeight.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             // 
             // label2
             // 
@@ -307,9 +312,9 @@
             // 
             // LayerNo
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            this.LayerNo.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            this.LayerNo.DefaultCellStyle = dataGridViewCellStyle1;
             this.LayerNo.FillWeight = 76.14214F;
             this.LayerNo.HeaderText = "Layer";
             this.LayerNo.MinimumWidth = 75;
@@ -319,9 +324,9 @@
             // 
             // NeuronsQuantity
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.NeuronsQuantity.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.NeuronsQuantity.DefaultCellStyle = dataGridViewCellStyle2;
             this.NeuronsQuantity.FillWeight = 123.8579F;
             this.NeuronsQuantity.HeaderText = "Neurons quantity without bias neuron";
             this.NeuronsQuantity.MinimumWidth = 150;

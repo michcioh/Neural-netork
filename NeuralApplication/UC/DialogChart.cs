@@ -12,7 +12,7 @@ namespace Neural.UC
 {
     public partial class DialogChart : UserControl
     {
-        private List<double> data;
+        private List<NeuralNet.RmsErrorHistoryElement> data;
 
         DataPoint previousDataPoint;
         Color normalPointColor = Color.FromArgb(65, 105, 255);
@@ -29,7 +29,7 @@ namespace Neural.UC
 
         }
 
-        public void SetData(List<double> data)
+        public void SetData(List<NeuralNet.RmsErrorHistoryElement> data)
         {
             this.data = data;
 
@@ -57,7 +57,7 @@ namespace Neural.UC
 
             chChart.Series[0].Points.Clear();
 
-            List<double> dataToShow = new List<double>();
+            List<NeuralNet.RmsErrorHistoryElement> dataToShow = new List<NeuralNet.RmsErrorHistoryElement>();
 
             int from = (int)nudFrom.Value - 1;
             int to = (int)nudTo.Value;
@@ -74,7 +74,7 @@ namespace Neural.UC
             int point = 0;
             do
             {
-                chChart.Series[0].Points.AddXY(point, dataToShow[point]);
+                chChart.Series[0].Points.AddXY(dataToShow[point].EpochNo, dataToShow[point].RmsError);
                 point += modulo;
             } while (point < dataToShow.Count);
 

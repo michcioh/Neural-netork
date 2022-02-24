@@ -21,17 +21,20 @@ namespace Neural
 
         int howManyDigitsShowAfterDotPlaces = 4;
         private double learningRatio;
+        private double momentum;
 
         public int epochMax { get; private set; }
         public bool bLearnXTimes { get; private set; }
         public bool bLearnUntilMinError { get; private set; }
         public double minimumError { get; private set; }
+        public double averageError { get; private set; }
 
         private bool bUsingDataInSequence;
         private bool bUsingDataRandom;
         private string bwError;
         private bool bwRunning;
         private int epochNo = 0;
+        private const ulong MAX_AVERAGE_ERROR_RANGE = 50;//50000;
 
         public void NotifyLearnDataChange()
         {
@@ -72,10 +75,14 @@ namespace Neural
             tbLearningMethod.Text = network.MethodOfLearning == NeuralNetwork.LearningMethod.LINEAR ? "linear" : "non linear";
             Tools.DoubleBuffered(pbNetworkError, true);
 
-            SetColumnsDgvNeurons();
-            RefreshDgvNeurons();
+            if (DoRefreshDgvNeurons)
+            {
+                SetColumnsDgvNeurons();
+                RefreshDgvNeurons();
+            }
 
-            WriteColumsToDgvNetworkTest();
+            if (!cbHideDgvTestData.Checked)
+                WriteColumsToDgvNetworkTest();
         }
 
         public void NotifyNeuronsWeightNotChange()
@@ -184,7 +191,7 @@ namespace Neural
         {
             DoRefreshDgvNeurons = false;
             Network.ResetNetwork();
-            DoRefreshDgvNeurons = true;
+            DoRefreshDgvNeurons = !cbHideDgvNeurons.Checked;
             RefreshDgvNeurons();
             TestNetwork();
             ShowCurrentNetworkError();
@@ -193,6 +200,16 @@ namespace Neural
         private void RefreshDgvNeurons()
         {
             if (!DoRefreshDgvNeurons) return;
+
+            if (Network.Topology.GetAllNeuronsCount() > 50)
+            {
+                if (MessageBox.Show(this, "There is more than 50 neurons to show. Are you sure you want to see all neurons with details?", "More than 50 neurons",
+                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) != DialogResult.OK)
+                {
+                    cbHideDgvNeurons.Checked = true;
+                    return;
+                }
+            }
 
             int selectedRowIdx = -1;
             int selectedColumnIdx = -1;
@@ -345,32 +362,43 @@ namespace Neural
 
             
 
-            #region Learning
-            lInfoLearning.Text = "Learning...";
-            lInfoEpoch.Text = "Current epoch no.: 0";
-
-            bLearn.Visible = false;
-            bStopLearning.Visible = true;
-            lInfoLearning.Visible = true;
-            lInfoEpoch.Visible = true;
-
-            // TODO: EVOLUTION: showing epoch no. while learing
-            learningRatio = (double)nudRatio.Value;
-            epochMax = (int)nudXDataTimes.Value;
-            bLearnXTimes = rbLearnXTimes.Checked;
-            bLearnUntilMinError = rbLearnUntilMinError.Checked;
-            minimumError = (double)nudMinimumError.Value;
-            bUsingDataInSequence = rbUsingDataInSequence.Checked;
-            bUsingDataRandom = rbUsingDataRandom.Checked;
-            bwRunning = true;
-            bwLearning.RunWorkerAsync();
-            
-            if (cbShowCurrent.Checked)
+            if (MainWindow.ucDialogLearningData.GetLearnSamples().Count > 0)
             {
-                tShowCurrentNetworkError.Start();
-            }
+                Network.CollectSparseHistoryEvery = (long)nudCollectEveryEpoch.Value;
 
-            tShowEpochNo.Start();
+                #region Learning
+                lInfoLearning.Text = "Learning...";
+                lInfoEpoch.Text = "Current epoch no.: 0";
+
+                bLearn.Visible = false;
+                bStopLearning.Visible = true;
+                lInfoLearning.Visible = true;
+                lInfoEpoch.Visible = true;
+
+                // TODO: EVOLUTION: showing epoch no. while learing
+                learningRatio = (double)nudRatio.Value;
+                momentum = (double)nudMomentum.Value;
+                epochMax = (int)nudXDataTimes.Value;
+                bLearnXTimes = rbLearnXTimes.Checked;
+                bLearnUntilMinError = rbLearnUntilMinError.Checked;
+                minimumError = (double)nudMinimumError.Value;
+                bUsingDataInSequence = rbUsingDataInSequence.Checked;
+                bUsingDataRandom = rbUsingDataRandom.Checked;
+                bwRunning = true;
+
+                bwLearning.RunWorkerAsync();
+
+                if (cbShowCurrent.Checked)
+                {
+                    tShowCurrentNetworkError.Start();
+                }
+
+                tShowEpochNo.Start();
+            }
+            else
+            {
+                MessageBox.Show(this, "There is no data for learning! How should I teach the network?", "No learning data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             #endregion
         }
@@ -380,8 +408,16 @@ namespace Neural
             int sampleNo = 0;
             bool errorGreater = true;
             Random random = new Random();
+            double averageSum = 0;
+            ulong averageCnt = 0;
+            averageError = -1;
 
             bwError = null;
+
+            if (!Network.PreviousInputsSet)
+            {
+                Network.PrepareToLearn();
+            }
 
             while (((bLearnXTimes && epochNo < epochMax) ||
                    (bLearnUntilMinError && errorGreater)) 
@@ -399,7 +435,7 @@ namespace Neural
                     learnSample = MainWindow.ucDialogLearningData.GetLearnSamples().ElementAt(sampleNo);
                 }
 
-                Network.Learn(learnSample, learningRatio, out string errorMessage);
+                Network.Learn(learnSample, learningRatio, momentum, out string errorMessage, epochNo);
 
                 if (errorMessage != null)
                 {
@@ -407,7 +443,7 @@ namespace Neural
                     break;
                 }
 
-                errorGreater = (Network.NetworkError > minimumError);
+                errorGreater = (averageError > minimumError || averageError == -1);
 
                 epochNo++;
 
@@ -421,12 +457,25 @@ namespace Neural
                 {
                     bwLearning.ReportProgress((epochNo * 100) / epochMax);
                 }
+
+                if (averageCnt < MAX_AVERAGE_ERROR_RANGE)
+                {
+                    averageSum += Network.NetworkError;
+                    averageCnt++;
+                } 
+                else
+                {
+                    averageError = averageSum / averageCnt;
+                    averageSum = 0;
+                    averageCnt = 0;
+                }
             }
         }
 
         private void BwLearning_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             lInfoLearning.Text = "Learning: " + e.ProgressPercentage + "%";
+            MainWindow.NotifyPercentageChanged(e.ProgressPercentage);
         }
 
         private void BwLearning_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -459,12 +508,13 @@ namespace Neural
 
         private void ShowCurrentNetworkError()
         {
-            if (Network.NetworkErrorSet)
+            if (averageError != -1)
             {
-                tbCurrentNetworkError.Text = Tools.DoubleToString(Network.NetworkError, 6);
-                int pbValue = (int)(Network.NetworkError * pbNetworkError.Maximum * 50); // * 50 to show better in progress bar
+                tbCurrentNetworkError.Text = Tools.DoubleToString(averageError, 6);
+                int pbValue = (int)(averageError * pbNetworkError.Maximum * 50); // * 50 to show better in progress bar
                 pbNetworkError.Value = (pbValue < pbNetworkError.Maximum) ? pbValue : pbNetworkError.Maximum;
-            } else
+            } 
+            else
             {
                 tbCurrentNetworkError.Text = "?";
                 pbNetworkError.Value = 0;
@@ -595,6 +645,8 @@ namespace Neural
 
             int learningQuantity = MainWindow.ucDialogLearningData.GetLearnSamples().Count;
 
+            List<LearnSample> learnSamples = new List<LearnSample>();
+
             if (learningQuantity == 0)
             {
                 MessageBox.Show(this, 
@@ -606,7 +658,8 @@ namespace Neural
                 DoRefreshDgvNeurons = true;
 
                 return;
-            } else  if (learningQuantity > 50)
+            } 
+            else  if (learningQuantity > 50 && !cbRandomAmountOfTest.Checked)
             {
                 if (MessageBox.Show(this,
                         "Quantity of learning data is " + learningQuantity + ". Are you sure you want to write all this data to gird?",
@@ -618,9 +671,24 @@ namespace Neural
                     DoRefreshDgvNeurons = true;
                     return;
                 }
+
+                learnSamples = MainWindow.ucDialogLearningData.GetLearnSamples();
+
+
+            } else if (cbRandomAmountOfTest.Checked)
+            {
+                Random random = new Random();
+
+                List<LearnSample> all = MainWindow.ucDialogLearningData.GetLearnSamples();
+
+                for (int i = 0; i < (int)nudAmountOfTest.Value; i++)
+                {
+                    
+                    learnSamples.Add(all.ElementAt(random.Next(0, all.Count - 1)));
+                }
             }
 
-            foreach(LearnSample learnSample in MainWindow.ucDialogLearningData.GetLearnSamples())
+            foreach (LearnSample learnSample in learnSamples)
             {
                 String[] tab = new String[Network.Topology.GetInputCount(false) + 1];
 
@@ -639,36 +707,6 @@ namespace Neural
             SetNamesEndEmptyValuesForTestData();
             DoRefreshDgvNeurons = true;
             RefreshDgvNeurons();
-
-            /*
-            if (dgvLearningData.Rows.Count - 1 == 0)
-            {
-                MessageBox.Show(this, "There is nothing to copy, because learn data is empty", "Learn data empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            DoRefreshDgvNeurons = false;
-
-            int TestRowsAlready = dgvTestData.Rows.Count;
-
-            for (int learnDataNo = 0; learnDataNo < dgvLearningData.Rows.Count - 1; learnDataNo++)
-            {
-                String[] tab = new String[Network.Topology.GetInputCount(false) + 1];
-
-                for (int inputNo = 0; inputNo < Network.Topology.GetInputCount(false); inputNo++)
-                {
-                    tab[inputNo + 1] = dgvLearningData.Rows[learnDataNo].Cells[inputNo + 1].Value == null ? 
-                        "" : 
-                        dgvLearningData.Rows[learnDataNo].Cells[inputNo + 1].Value.ToString();
-                }
-
-                dgvTestData.Rows.Add(tab);
-                TestNetwork(dgvTestData.Rows.Count - 1, false);
-            }
-
-            SetNamesEndEmptyValuesForTestData();
-            DoRefreshDgvNeurons = true;
-            RefreshDgvNeurons();*/
         }
 
         public void SetColumnsDgvNeurons()
@@ -873,6 +911,7 @@ namespace Neural
             // EVOLUTION: on stop button notify about changing in network and ask about restore network before learning process.
             bwRunning = false;
             bStopLearning.Enabled = false;
+            MainWindow.NotifyLearningEnds();
         }
 
         private void TShowCurrentNetworkError_Tick(object sender, EventArgs e)
@@ -906,27 +945,66 @@ namespace Neural
             {
                 if (MessageBox.Show(
                     this, 
-                    "Saving networ with huge history may fail due to the large amount of data. Do you want to keep saving history?", 
+                    "Saving network with huge history may fail due to the large amount of data. Do you want to keep saving history?", 
                     "Saving history?",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2) != DialogResult.OK)
                 {
-                    cbSaveWithoutHistory.Checked = true;
+                    cbSaveWithoutHistory.Checked = false;
                 }
             }
         }
 
         private void TShowEpochNo_Tick(object sender, EventArgs e)
         {
-            String epoch = epochNo.ToString();
-
-            lInfoEpoch.Text = "Current epoch no.: " + epoch;
+            lInfoEpoch.Text = "Current epoch no.: " + FormatNumber(epochNo.ToString());
         }
 
         private void BClear_Click(object sender, EventArgs e)
         {
             dgvTestData.Rows.Clear();
+        }
+
+        private String FormatNumber(String number)
+        {
+            String ret = "";
+            int cnt = 0;
+
+            for (int i = number.Length - 1; i >= 0; i--)
+            {
+                ret = number[i] + ret;
+                if (++cnt == 3)
+                {
+                    cnt = 0;
+                    ret = " " + ret;
+                }
+            }
+
+            return ret;
+        }
+
+        private void cbRandomAmountOfTest_CheckedChanged(object sender, EventArgs e)
+        {
+            nudAmountOfTest.Enabled = cbRandomAmountOfTest.Checked;
+        }
+
+        private void cbHideDgvNeurons_CheckedChanged(object sender, EventArgs e)
+        {
+            dgvNeurons.Visible = (!cbHideDgvNeurons.Checked);
+            DoRefreshDgvNeurons = !cbHideDgvNeurons.Checked;
+
+            if (DoRefreshDgvNeurons) RefreshDgvNeurons();
+        }
+
+        private void cbHideDgvTestData_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!cbHideDgvTestData.Checked)
+            {
+                WriteColumsToDgvNetworkTest();
+            }
+
+            dgvTestData.Visible = (!cbHideDgvTestData.Checked);
         }
     }
 }

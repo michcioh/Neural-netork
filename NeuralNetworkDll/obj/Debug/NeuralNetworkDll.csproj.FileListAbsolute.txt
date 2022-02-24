@@ -4,3 +4,9 @@ C:\Michal\VS\Neural\NeuralNetworkDll\obj\Debug\NeuralNetworkDll.csproj.CoreCompi
 C:\Michal\VS\Neural\NeuralNetworkDll\obj\Debug\NeuralNetwork.dll
 C:\Michal\VS\Neural\NeuralNetworkDll\obj\Debug\NeuralNetwork.pdb
 C:\Michal\VS\Neural\NeuralNetworkDll\obj\Debug\NeuralNetworkDll.csprojAssemblyReference.cache
+C:\GitHub\Neural-netork\NeuralNetworkDll\bin\Debug\NeuralNetwork.dll
+C:\GitHub\Neural-netork\NeuralNetworkDll\bin\Debug\NeuralNetwork.pdb
+C:\GitHub\Neural-netork\NeuralNetworkDll\obj\Debug\NeuralNetwork.dll
+C:\GitHub\Neural-netork\NeuralNetworkDll\obj\Debug\NeuralNetwork.pdb
+C:\GitHub\Neural-netork\NeuralNetworkDll\obj\Debug\NeuralNetworkDll.csproj.CoreCompileInputs.cache
+C:\GitHub\Neural-netork\NeuralNetworkDll\obj\Debug\NeuralNetworkDll.csprojAssemblyReference.cache

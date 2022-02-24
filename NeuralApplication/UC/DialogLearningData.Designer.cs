@@ -32,6 +32,9 @@ namespace Neural
         {
             this.bApply = new System.Windows.Forms.Button();
             this.pContent = new System.Windows.Forms.Panel();
+            this.rbLearnAllData = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.rbLearnSelectedData = new System.Windows.Forms.RadioButton();
             this.bDldFile = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -39,6 +42,8 @@ namespace Neural
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvOutputData = new System.Windows.Forms.DataGridView();
             this.gbLearingData = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbFileName = new System.Windows.Forms.TextBox();
             this.cbShowData = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.bSaveLearningDataToFile = new System.Windows.Forms.Button();
@@ -47,11 +52,6 @@ namespace Neural
             this.label5 = new System.Windows.Forms.Label();
             this.ofdOpen = new System.Windows.Forms.OpenFileDialog();
             this.sfdSave = new System.Windows.Forms.SaveFileDialog();
-            this.rbLearnAllData = new System.Windows.Forms.RadioButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.rbLearnSelectedData = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbFileName = new System.Windows.Forms.TextBox();
             this.pContent.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -93,6 +93,38 @@ namespace Neural
             this.pContent.Name = "pContent";
             this.pContent.Size = new System.Drawing.Size(942, 678);
             this.pContent.TabIndex = 10;
+            // 
+            // rbLearnAllData
+            // 
+            this.rbLearnAllData.AutoSize = true;
+            this.rbLearnAllData.Checked = true;
+            this.rbLearnAllData.Location = new System.Drawing.Point(437, 641);
+            this.rbLearnAllData.Name = "rbLearnAllData";
+            this.rbLearnAllData.Size = new System.Drawing.Size(141, 21);
+            this.rbLearnAllData.TabIndex = 49;
+            this.rbLearnAllData.TabStop = true;
+            this.rbLearnAllData.Text = "all data for learning";
+            this.rbLearnAllData.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(351, 643);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 17);
+            this.label7.TabIndex = 50;
+            this.label7.Text = "Use data as:";
+            // 
+            // rbLearnSelectedData
+            // 
+            this.rbLearnSelectedData.AutoSize = true;
+            this.rbLearnSelectedData.Location = new System.Drawing.Point(584, 641);
+            this.rbLearnSelectedData.Name = "rbLearnSelectedData";
+            this.rbLearnSelectedData.Size = new System.Drawing.Size(176, 21);
+            this.rbLearnSelectedData.TabIndex = 51;
+            this.rbLearnSelectedData.Text = "selected data for learning";
+            this.rbLearnSelectedData.UseVisualStyleBackColor = true;
             // 
             // bDldFile
             // 
@@ -197,11 +229,30 @@ namespace Neural
             this.gbLearingData.TabStop = false;
             this.gbLearingData.Text = "Data for learning";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 17);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Loaded file:";
+            // 
+            // tbFileName
+            // 
+            this.tbFileName.BackColor = System.Drawing.SystemColors.Control;
+            this.tbFileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbFileName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbFileName.Location = new System.Drawing.Point(88, 24);
+            this.tbFileName.Name = "tbFileName";
+            this.tbFileName.ReadOnly = true;
+            this.tbFileName.Size = new System.Drawing.Size(532, 18);
+            this.tbFileName.TabIndex = 39;
+            this.tbFileName.Text = "none";
+            // 
             // cbShowData
             // 
             this.cbShowData.AutoSize = true;
-            this.cbShowData.Checked = true;
-            this.cbShowData.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbShowData.Location = new System.Drawing.Point(483, 246);
             this.cbShowData.Name = "cbShowData";
             this.cbShowData.Size = new System.Drawing.Size(88, 21);
@@ -230,7 +281,7 @@ namespace Neural
             this.bSaveLearningDataToFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bSaveLearningDataToFile.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bSaveLearningDataToFile.ForeColor = System.Drawing.Color.White;
-            this.bSaveLearningDataToFile.Location = new System.Drawing.Point(577, 243);
+            this.bSaveLearningDataToFile.Location = new System.Drawing.Point(736, 243);
             this.bSaveLearningDataToFile.Name = "bSaveLearningDataToFile";
             this.bSaveLearningDataToFile.Size = new System.Drawing.Size(153, 25);
             this.bSaveLearningDataToFile.TabIndex = 35;
@@ -246,7 +297,7 @@ namespace Neural
             this.bReadingDataFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bReadingDataFile.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bReadingDataFile.ForeColor = System.Drawing.Color.White;
-            this.bReadingDataFile.Location = new System.Drawing.Point(736, 243);
+            this.bReadingDataFile.Location = new System.Drawing.Point(577, 243);
             this.bReadingDataFile.Name = "bReadingDataFile";
             this.bReadingDataFile.Size = new System.Drawing.Size(153, 25);
             this.bReadingDataFile.TabIndex = 34;
@@ -296,59 +347,6 @@ namespace Neural
             this.sfdSave.DefaultExt = "csv";
             this.sfdSave.Filter = "CSV files|*.csv|All files|*.*";
             this.sfdSave.RestoreDirectory = true;
-            // 
-            // rbLearnAllData
-            // 
-            this.rbLearnAllData.AutoSize = true;
-            this.rbLearnAllData.Checked = true;
-            this.rbLearnAllData.Location = new System.Drawing.Point(437, 641);
-            this.rbLearnAllData.Name = "rbLearnAllData";
-            this.rbLearnAllData.Size = new System.Drawing.Size(141, 21);
-            this.rbLearnAllData.TabIndex = 49;
-            this.rbLearnAllData.TabStop = true;
-            this.rbLearnAllData.Text = "all data for learning";
-            this.rbLearnAllData.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(351, 643);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 17);
-            this.label7.TabIndex = 50;
-            this.label7.Text = "Use data as:";
-            // 
-            // rbLearnSelectedData
-            // 
-            this.rbLearnSelectedData.AutoSize = true;
-            this.rbLearnSelectedData.Location = new System.Drawing.Point(584, 641);
-            this.rbLearnSelectedData.Name = "rbLearnSelectedData";
-            this.rbLearnSelectedData.Size = new System.Drawing.Size(176, 21);
-            this.rbLearnSelectedData.TabIndex = 51;
-            this.rbLearnSelectedData.Text = "selected data for learning";
-            this.rbLearnSelectedData.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 17);
-            this.label1.TabIndex = 38;
-            this.label1.Text = "Loaded file:";
-            // 
-            // tbFileName
-            // 
-            this.tbFileName.BackColor = System.Drawing.SystemColors.Control;
-            this.tbFileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbFileName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.tbFileName.Location = new System.Drawing.Point(88, 24);
-            this.tbFileName.Name = "tbFileName";
-            this.tbFileName.ReadOnly = true;
-            this.tbFileName.Size = new System.Drawing.Size(532, 18);
-            this.tbFileName.TabIndex = 39;
-            this.tbFileName.Text = "none";
             // 
             // DialogLearningData
             // 

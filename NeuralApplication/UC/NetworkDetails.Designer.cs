@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tTimerSuccessfully = new System.Windows.Forms.Timer(this.components);
             this.ofdOpen = new System.Windows.Forms.OpenFileDialog();
             this.bClose = new System.Windows.Forms.Button();
@@ -47,6 +47,7 @@
             this.bReadingDataFile = new System.Windows.Forms.Button();
             this.pContent = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbSaveWithoutAnyHistory = new System.Windows.Forms.CheckBox();
             this.cbSaveWithoutHistory = new System.Windows.Forms.CheckBox();
             this.tbLearningMethod = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -54,11 +55,14 @@
             this.nudDigits = new System.Windows.Forms.NumericUpDown();
             this.tbBias = new System.Windows.Forms.TextBox();
             this.gbTest = new System.Windows.Forms.GroupBox();
+            this.cbRandomAmountOfTest = new System.Windows.Forms.CheckBox();
+            this.nudAmountOfTest = new System.Windows.Forms.NumericUpDown();
             this.bClear = new System.Windows.Forms.Button();
             this.BEnlargeTableTest = new System.Windows.Forms.Button();
             this.bCopyFromLearnData = new System.Windows.Forms.Button();
             this.dgvTestData = new System.Windows.Forms.DataGridView();
             this.gbNeurons = new System.Windows.Forms.GroupBox();
+            this.cbHideDgvNeurons = new System.Windows.Forms.CheckBox();
             this.BEnlargeTableNeurons = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvNeurons = new System.Windows.Forms.DataGridView();
@@ -68,6 +72,8 @@
             this.nActivationFunction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbLearning = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.nudMomentum = new System.Windows.Forms.NumericUpDown();
             this.rbUsingDataInSequence = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.rbUsingDataRandom = new System.Windows.Forms.RadioButton();
@@ -80,6 +86,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.nudMinimumError = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.nudCollectEveryEpoch = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
             this.lInfoEpoch = new System.Windows.Forms.Label();
             this.bStopLearning = new System.Windows.Forms.Button();
             this.lInfoLearning = new System.Windows.Forms.Label();
@@ -97,21 +106,25 @@
             this.bwLearning = new System.ComponentModel.BackgroundWorker();
             this.tShowCurrentNetworkError = new System.Windows.Forms.Timer(this.components);
             this.tShowEpochNo = new System.Windows.Forms.Timer(this.components);
+            this.cbHideDgvTestData = new System.Windows.Forms.CheckBox();
             this.gbLearingData.SuspendLayout();
             this.pContent.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDigits)).BeginInit();
             this.gbTest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAmountOfTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestData)).BeginInit();
             this.gbNeurons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNeurons)).BeginInit();
             this.gbLearning.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRatio)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudXDataTimes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinimumError)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCollectEveryEpoch)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -286,6 +299,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbSaveWithoutAnyHistory);
             this.groupBox1.Controls.Add(this.cbSaveWithoutHistory);
             this.groupBox1.Controls.Add(this.tbLearningMethod);
             this.groupBox1.Controls.Add(this.label11);
@@ -302,16 +316,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Network details";
             // 
+            // cbSaveWithoutAnyHistory
+            // 
+            this.cbSaveWithoutAnyHistory.AutoSize = true;
+            this.cbSaveWithoutAnyHistory.Location = new System.Drawing.Point(290, 65);
+            this.cbSaveWithoutAnyHistory.Name = "cbSaveWithoutAnyHistory";
+            this.cbSaveWithoutAnyHistory.Size = new System.Drawing.Size(224, 21);
+            this.cbSaveWithoutAnyHistory.TabIndex = 58;
+            this.cbSaveWithoutAnyHistory.Text = "Save network without RMS history";
+            this.cbSaveWithoutAnyHistory.UseVisualStyleBackColor = true;
+            // 
             // cbSaveWithoutHistory
             // 
             this.cbSaveWithoutHistory.AutoSize = true;
-            this.cbSaveWithoutHistory.Checked = true;
-            this.cbSaveWithoutHistory.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSaveWithoutHistory.Location = new System.Drawing.Point(277, 41);
+            this.cbSaveWithoutHistory.Location = new System.Drawing.Point(290, 41);
             this.cbSaveWithoutHistory.Name = "cbSaveWithoutHistory";
-            this.cbSaveWithoutHistory.Size = new System.Drawing.Size(244, 21);
+            this.cbSaveWithoutHistory.Size = new System.Drawing.Size(284, 21);
             this.cbSaveWithoutHistory.TabIndex = 57;
-            this.cbSaveWithoutHistory.Text = "Save network without detailed history";
+            this.cbSaveWithoutHistory.Text = "Save network without detailed epoch history";
             this.cbSaveWithoutHistory.UseVisualStyleBackColor = true;
             this.cbSaveWithoutHistory.CheckedChanged += new System.EventHandler(this.CbSaveWithoutHistory_CheckedChanged);
             // 
@@ -386,6 +408,9 @@
             // 
             this.gbTest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbTest.Controls.Add(this.cbHideDgvTestData);
+            this.gbTest.Controls.Add(this.cbRandomAmountOfTest);
+            this.gbTest.Controls.Add(this.nudAmountOfTest);
             this.gbTest.Controls.Add(this.bClear);
             this.gbTest.Controls.Add(this.BEnlargeTableTest);
             this.gbTest.Controls.Add(this.bCopyFromLearnData);
@@ -397,15 +422,52 @@
             this.gbTest.TabStop = false;
             this.gbTest.Text = "Network test";
             // 
+            // cbRandomAmountOfTest
+            // 
+            this.cbRandomAmountOfTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbRandomAmountOfTest.AutoSize = true;
+            this.cbRandomAmountOfTest.Location = new System.Drawing.Point(762, 394);
+            this.cbRandomAmountOfTest.Name = "cbRandomAmountOfTest";
+            this.cbRandomAmountOfTest.Size = new System.Drawing.Size(127, 21);
+            this.cbRandomAmountOfTest.TabIndex = 54;
+            this.cbRandomAmountOfTest.Text = "Random amount:";
+            this.cbRandomAmountOfTest.UseVisualStyleBackColor = true;
+            this.cbRandomAmountOfTest.CheckedChanged += new System.EventHandler(this.cbRandomAmountOfTest_CheckedChanged);
+            // 
+            // nudAmountOfTest
+            // 
+            this.nudAmountOfTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudAmountOfTest.Enabled = false;
+            this.nudAmountOfTest.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudAmountOfTest.Location = new System.Drawing.Point(890, 393);
+            this.nudAmountOfTest.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.nudAmountOfTest.Name = "nudAmountOfTest";
+            this.nudAmountOfTest.Size = new System.Drawing.Size(52, 25);
+            this.nudAmountOfTest.TabIndex = 52;
+            this.nudAmountOfTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudAmountOfTest.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
             // bClear
             // 
-            this.bClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.bClear.BackColor = System.Drawing.Color.RoyalBlue;
             this.bClear.FlatAppearance.BorderSize = 0;
             this.bClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bClear.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bClear.ForeColor = System.Drawing.Color.White;
-            this.bClear.Location = new System.Drawing.Point(373, 393);
+            this.bClear.Location = new System.Drawing.Point(9, 393);
             this.bClear.Name = "bClear";
             this.bClear.Size = new System.Drawing.Size(153, 25);
             this.bClear.TabIndex = 40;
@@ -415,13 +477,13 @@
             // 
             // BEnlargeTableTest
             // 
-            this.BEnlargeTableTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BEnlargeTableTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BEnlargeTableTest.BackColor = System.Drawing.Color.RoyalBlue;
             this.BEnlargeTableTest.FlatAppearance.BorderSize = 0;
             this.BEnlargeTableTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BEnlargeTableTest.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.BEnlargeTableTest.ForeColor = System.Drawing.Color.White;
-            this.BEnlargeTableTest.Location = new System.Drawing.Point(532, 393);
+            this.BEnlargeTableTest.Location = new System.Drawing.Point(168, 393);
             this.BEnlargeTableTest.Name = "BEnlargeTableTest";
             this.BEnlargeTableTest.Size = new System.Drawing.Size(153, 25);
             this.BEnlargeTableTest.TabIndex = 39;
@@ -437,7 +499,7 @@
             this.bCopyFromLearnData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bCopyFromLearnData.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bCopyFromLearnData.ForeColor = System.Drawing.Color.White;
-            this.bCopyFromLearnData.Location = new System.Drawing.Point(691, 393);
+            this.bCopyFromLearnData.Location = new System.Drawing.Point(505, 393);
             this.bCopyFromLearnData.Name = "bCopyFromLearnData";
             this.bCopyFromLearnData.Size = new System.Drawing.Size(251, 25);
             this.bCopyFromLearnData.TabIndex = 35;
@@ -455,12 +517,12 @@
             this.dgvTestData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvTestData.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvTestData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTestData.Location = new System.Drawing.Point(6, 24);
+            this.dgvTestData.Location = new System.Drawing.Point(6, 51);
             this.dgvTestData.Name = "dgvTestData";
             this.dgvTestData.RowHeadersVisible = false;
             this.dgvTestData.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dgvTestData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvTestData.Size = new System.Drawing.Size(936, 363);
+            this.dgvTestData.Size = new System.Drawing.Size(936, 336);
             this.dgvTestData.TabIndex = 27;
             this.dgvTestData.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvTestData_CellValueChanged);
             this.dgvTestData.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DgvTestData_UserAddedRow);
@@ -472,6 +534,7 @@
             // 
             this.gbNeurons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbNeurons.Controls.Add(this.cbHideDgvNeurons);
             this.gbNeurons.Controls.Add(this.BEnlargeTableNeurons);
             this.gbNeurons.Controls.Add(this.label6);
             this.gbNeurons.Controls.Add(this.dgvNeurons);
@@ -481,6 +544,19 @@
             this.gbNeurons.TabIndex = 47;
             this.gbNeurons.TabStop = false;
             this.gbNeurons.Text = "Information about neurons (current state)";
+            // 
+            // cbHideDgvNeurons
+            // 
+            this.cbHideDgvNeurons.AutoSize = true;
+            this.cbHideDgvNeurons.Checked = true;
+            this.cbHideDgvNeurons.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbHideDgvNeurons.Location = new System.Drawing.Point(12, 24);
+            this.cbHideDgvNeurons.Name = "cbHideDgvNeurons";
+            this.cbHideDgvNeurons.Size = new System.Drawing.Size(111, 21);
+            this.cbHideDgvNeurons.TabIndex = 39;
+            this.cbHideDgvNeurons.Text = "Hide this table";
+            this.cbHideDgvNeurons.UseVisualStyleBackColor = true;
+            this.cbHideDgvNeurons.CheckedChanged += new System.EventHandler(this.cbHideDgvNeurons_CheckedChanged);
             // 
             // BEnlargeTableNeurons
             // 
@@ -527,13 +603,13 @@
             this.nNeuronNo,
             this.nIsBias,
             this.nActivationFunction});
-            this.dgvNeurons.Location = new System.Drawing.Point(12, 24);
+            this.dgvNeurons.Location = new System.Drawing.Point(12, 51);
             this.dgvNeurons.MultiSelect = false;
             this.dgvNeurons.Name = "dgvNeurons";
             this.dgvNeurons.RowHeadersVisible = false;
             this.dgvNeurons.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dgvNeurons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvNeurons.Size = new System.Drawing.Size(930, 342);
+            this.dgvNeurons.Size = new System.Drawing.Size(930, 315);
             this.dgvNeurons.TabIndex = 28;
             this.dgvNeurons.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvNeurons_CellDoubleClick);
             this.dgvNeurons.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvNeurons_KeyDown);
@@ -541,8 +617,8 @@
             // 
             // nLayerNo
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            this.nLayerNo.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            this.nLayerNo.DefaultCellStyle = dataGridViewCellStyle13;
             this.nLayerNo.HeaderText = "Layer no";
             this.nLayerNo.MinimumWidth = 100;
             this.nLayerNo.Name = "nLayerNo";
@@ -550,8 +626,8 @@
             // 
             // nNeuronNo
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            this.nNeuronNo.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            this.nNeuronNo.DefaultCellStyle = dataGridViewCellStyle14;
             this.nNeuronNo.HeaderText = "Neuron No";
             this.nNeuronNo.MinimumWidth = 100;
             this.nNeuronNo.Name = "nNeuronNo";
@@ -559,8 +635,8 @@
             // 
             // nIsBias
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            this.nIsBias.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            this.nIsBias.DefaultCellStyle = dataGridViewCellStyle15;
             this.nIsBias.HeaderText = "Is bias?";
             this.nIsBias.MinimumWidth = 75;
             this.nIsBias.Name = "nIsBias";
@@ -589,6 +665,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.nudMomentum);
             this.groupBox4.Controls.Add(this.rbUsingDataInSequence);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.rbUsingDataRandom);
@@ -602,10 +680,50 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Conditions details";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label14.Location = new System.Drawing.Point(169, 22);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(77, 17);
+            this.label14.TabIndex = 64;
+            this.label14.Text = "momentum:";
+            // 
+            // nudMomentum
+            // 
+            this.nudMomentum.DecimalPlaces = 2;
+            this.nudMomentum.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.nudMomentum.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            131072});
+            this.nudMomentum.Location = new System.Drawing.Point(249, 18);
+            this.nudMomentum.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudMomentum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudMomentum.Name = "nudMomentum";
+            this.nudMomentum.Size = new System.Drawing.Size(59, 25);
+            this.nudMomentum.TabIndex = 65;
+            this.nudMomentum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudMomentum.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            65536});
+            // 
             // rbUsingDataInSequence
             // 
             this.rbUsingDataInSequence.AutoSize = true;
-            this.rbUsingDataInSequence.Location = new System.Drawing.Point(316, 19);
+            this.rbUsingDataInSequence.Location = new System.Drawing.Point(431, 18);
             this.rbUsingDataInSequence.Name = "rbUsingDataInSequence";
             this.rbUsingDataInSequence.Size = new System.Drawing.Size(95, 21);
             this.rbUsingDataInSequence.TabIndex = 63;
@@ -626,7 +744,7 @@
             // 
             this.rbUsingDataRandom.AutoSize = true;
             this.rbUsingDataRandom.Checked = true;
-            this.rbUsingDataRandom.Location = new System.Drawing.Point(238, 19);
+            this.rbUsingDataRandom.Location = new System.Drawing.Point(353, 18);
             this.rbUsingDataRandom.Name = "rbUsingDataRandom";
             this.rbUsingDataRandom.Size = new System.Drawing.Size(72, 21);
             this.rbUsingDataRandom.TabIndex = 62;
@@ -638,7 +756,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label13.Location = new System.Drawing.Point(169, 21);
+            this.label13.Location = new System.Drawing.Point(284, 20);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(63, 17);
             this.label13.TabIndex = 61;
@@ -767,6 +885,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.nudCollectEveryEpoch);
+            this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.lInfoEpoch);
             this.groupBox3.Controls.Add(this.bStopLearning);
             this.groupBox3.Controls.Add(this.lInfoLearning);
@@ -782,12 +903,53 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Learning process";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(625, 96);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 17);
+            this.label9.TabIndex = 71;
+            this.label9.Text = "epoch";
+            // 
+            // nudCollectEveryEpoch
+            // 
+            this.nudCollectEveryEpoch.Location = new System.Drawing.Point(524, 94);
+            this.nudCollectEveryEpoch.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.nudCollectEveryEpoch.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudCollectEveryEpoch.Name = "nudCollectEveryEpoch";
+            this.nudCollectEveryEpoch.Size = new System.Drawing.Size(96, 25);
+            this.nudCollectEveryEpoch.TabIndex = 70;
+            this.nudCollectEveryEpoch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudCollectEveryEpoch.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(393, 96);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(125, 17);
+            this.label7.TabIndex = 69;
+            this.label7.Text = "Collect history every";
+            // 
             // lInfoEpoch
             // 
             this.lInfoEpoch.AutoSize = true;
             this.lInfoEpoch.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lInfoEpoch.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lInfoEpoch.Location = new System.Drawing.Point(552, 76);
+            this.lInfoEpoch.Location = new System.Drawing.Point(552, 68);
             this.lInfoEpoch.Name = "lInfoEpoch";
             this.lInfoEpoch.Size = new System.Drawing.Size(169, 17);
             this.lInfoEpoch.TabIndex = 68;
@@ -801,7 +963,7 @@
             this.bStopLearning.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bStopLearning.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bStopLearning.ForeColor = System.Drawing.Color.White;
-            this.bStopLearning.Location = new System.Drawing.Point(393, 24);
+            this.bStopLearning.Location = new System.Drawing.Point(393, 34);
             this.bStopLearning.Name = "bStopLearning";
             this.bStopLearning.Size = new System.Drawing.Size(153, 25);
             this.bStopLearning.TabIndex = 67;
@@ -815,7 +977,7 @@
             this.lInfoLearning.AutoSize = true;
             this.lInfoLearning.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lInfoLearning.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lInfoLearning.Location = new System.Drawing.Point(552, 45);
+            this.lInfoLearning.Location = new System.Drawing.Point(552, 37);
             this.lInfoLearning.Name = "lInfoLearning";
             this.lInfoLearning.Size = new System.Drawing.Size(97, 17);
             this.lInfoLearning.TabIndex = 66;
@@ -893,6 +1055,7 @@
             this.pbNetworkError.Step = 10000000;
             this.pbNetworkError.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pbNetworkError.TabIndex = 58;
+            this.pbNetworkError.Visible = false;
             // 
             // tbCurrentNetworkError
             // 
@@ -911,7 +1074,7 @@
             this.lInfoLearnFinishedStopped.AutoSize = true;
             this.lInfoLearnFinishedStopped.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lInfoLearnFinishedStopped.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(180)))), ((int)(((byte)(0)))));
-            this.lInfoLearnFinishedStopped.Location = new System.Drawing.Point(552, 45);
+            this.lInfoLearnFinishedStopped.Location = new System.Drawing.Point(552, 37);
             this.lInfoLearnFinishedStopped.Name = "lInfoLearnFinishedStopped";
             this.lInfoLearnFinishedStopped.Size = new System.Drawing.Size(92, 17);
             this.lInfoLearnFinishedStopped.TabIndex = 54;
@@ -925,7 +1088,7 @@
             this.bShowLearnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bShowLearnHistory.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bShowLearnHistory.ForeColor = System.Drawing.Color.White;
-            this.bShowLearnHistory.Location = new System.Drawing.Point(393, 72);
+            this.bShowLearnHistory.Location = new System.Drawing.Point(393, 64);
             this.bShowLearnHistory.Name = "bShowLearnHistory";
             this.bShowLearnHistory.Size = new System.Drawing.Size(153, 25);
             this.bShowLearnHistory.TabIndex = 53;
@@ -940,7 +1103,7 @@
             this.bLearn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bLearn.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.bLearn.ForeColor = System.Drawing.Color.White;
-            this.bLearn.Location = new System.Drawing.Point(393, 41);
+            this.bLearn.Location = new System.Drawing.Point(393, 33);
             this.bLearn.Name = "bLearn";
             this.bLearn.Size = new System.Drawing.Size(153, 25);
             this.bLearn.TabIndex = 45;
@@ -969,6 +1132,19 @@
             this.tShowEpochNo.Interval = 500;
             this.tShowEpochNo.Tick += new System.EventHandler(this.TShowEpochNo_Tick);
             // 
+            // cbHideDgvTestData
+            // 
+            this.cbHideDgvTestData.AutoSize = true;
+            this.cbHideDgvTestData.Checked = true;
+            this.cbHideDgvTestData.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbHideDgvTestData.Location = new System.Drawing.Point(6, 24);
+            this.cbHideDgvTestData.Name = "cbHideDgvTestData";
+            this.cbHideDgvTestData.Size = new System.Drawing.Size(111, 21);
+            this.cbHideDgvTestData.TabIndex = 55;
+            this.cbHideDgvTestData.Text = "Hide this table";
+            this.cbHideDgvTestData.UseVisualStyleBackColor = true;
+            this.cbHideDgvTestData.CheckedChanged += new System.EventHandler(this.cbHideDgvTestData_CheckedChanged);
+            // 
             // NetworkDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -987,6 +1163,8 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDigits)).EndInit();
             this.gbTest.ResumeLayout(false);
+            this.gbTest.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAmountOfTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestData)).EndInit();
             this.gbNeurons.ResumeLayout(false);
             this.gbNeurons.PerformLayout();
@@ -994,6 +1172,7 @@
             this.gbLearning.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRatio)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1001,6 +1180,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMinimumError)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCollectEveryEpoch)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -1073,5 +1253,15 @@
         private System.Windows.Forms.Label lInfoEpoch;
         private System.Windows.Forms.Timer tShowEpochNo;
         private System.Windows.Forms.Button bClear;
+        public System.Windows.Forms.CheckBox cbSaveWithoutAnyHistory;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown nudCollectEveryEpoch;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown nudMomentum;
+        private System.Windows.Forms.CheckBox cbRandomAmountOfTest;
+        private System.Windows.Forms.NumericUpDown nudAmountOfTest;
+        private System.Windows.Forms.CheckBox cbHideDgvNeurons;
+        private System.Windows.Forms.CheckBox cbHideDgvTestData;
     }
 }

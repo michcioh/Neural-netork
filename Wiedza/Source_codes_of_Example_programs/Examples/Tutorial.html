@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+</head>
+<body>
+    <h1>
+        U¿ywanie bibliotek</h1>
+    <h2>
+        Biblioteka <code>RTadeusiewicz.NN.Controls</code></h2>
+    <h3>
+        U¿ywanie kontrolki rysuj¹cej wykresy</h3>
+    <p>
+        Do rysowania wykresów s³u¿y kontrolka <code>ChartPlotter</code>. Kontrolka ta potrafi
+        narysowaæ uk³ad wspó³rzêdnych i... w³aœciwie cokolwiek. Sama w sobie rysuje osie
+        uk³adu wspó³rzêdnych.</p>
+    <p>
+        To, czy kontrolka rysuje osie uk³adu, kontroluje w³asnoœæ <code>AxesVisibility</code>. W³asnoœæ
+        <code>TicksVisibility</code> pozwala pokazaæ lub ukryæ podzia³kê. W³asnoœæ <code>TicksDistance</code>
+        okreœla rozmiar podzia³ki. Obserwowan¹ powierzchniê okreœla w³asnoœæ <code>VisibleSurface</code>.
+        Niestety, nie jest ona edytowalna w designerze, trzeba j¹ ustawiaæ bezpoœrednio
+        w kodzie.</p>
+    <p>
+        Dane rysowane na wykresie okreœlane s¹ przez w³asnoœæ <code>DataSeries</code>. S¹ to serie danych
+        (pojêcie analogiczne do serii danych z Excela). Jest to kolekcja
+        obiektów dziedzicz¹cych
+        po klasie <code>DataSeries</code>. Ka¿dy z tych obiektów reprezentuje jedn¹ seriê danych, aczkolwiek mo¿e równie dobrze reprezentowaæ cokolwiek innego, gdy¿ w ca³oœci odpowiada on za rysowanie. Kolor i gruboœæ linii danej serii mo¿emy ustawiæ w³asnoœciami
+        <code>DataSeries.ForeColor</code> i <code>DataSeries.LineWidth</code>.</p>
+    <p>
+        Przyk³ad u¿ycia tej kontrolki mo¿na zobaczyæ w projekcie <code>LibraryTest</code>.</p>
+    <h4>
+        Rysowanie wykresów liniowych</h4>
+    <p>
+        Aby narysowaæ wykres sk³adaj¹cy siê z serii linii (tj. bêd¹cy ³aman¹), nale¿y do
+        kolekcji <code>ChartPlotter.DataSeries</code> dodaæ obiekt klasy <code>ListDataSeries</code>.
+        Klasa ta zawiera w³asnoœæ Data, która zawiera struktury PointF odpowiadaj¹ce kolejnym
+        wierzcho³kom ³amanej. Oczywiœcie aby narysowaæ coœ sensownego, kolekcja powinna
+        ta mieæ co najmniej 2 elementy.</p>
+    <p>
+        Inn¹ mo¿liwoœci¹ jest uzycie obiektu klasy <code>ComputedDataSeries</code>. Jest on przeznaczony
+        do rysowania wykresów funkcji, w szczególnoœci funkcji g³adkich. Tutaj rysowany
+        obiekt zadany jest nie seri¹ punktów, lecz funkcj¹ odzwierciedlaj¹c¹ wspó³rzêdne
+        poziome na pionowe. Co istotne, funkcja ta jest obliczana dla ka¿dej
+        widocznej kolumny ekranu, dziêki czemu dobrze siê skaluje, zachowuj¹c g³adkoœæ nawet
+        przy zmianie rozmiaru kontrolki macierzystej. Rysowan¹ funkcjê ustawiamy przypisuj¹c
+        do w³asnoœci <code>Function</code> delegata typu <code>ComputedDataSeries.DrawableFunction</code>,
+        czyli funkcji przyjmuj¹cej argument typu <code>double</code> i zwracaj¹cej wartoœæ typu <code>double</code>.</p>
+    <p>
+        Jeœli wyœwietlana funkcja ma byæ nie tylko g³adka, ale równie¿ zale¿na od jakiegoœ
+        "zewnêtrznego" parametru, najlepiej jest siê pos³u¿yæ "obiektem funkcyjnym". W tym
+        celu tworzymy klasê naszej funkcji bazuj¹c¹ na <code>ComputedDataSeries.ParametrizedFunction</code>
+        i przypisujemy obiekt tej klasy do w³asnoœci <code>ComputedSeries.FunctionObject</code>. Najlepiej
+        to zrozumieæ na bazie przyk³adu zawartego w projekcie <code>LibraryTest.</code></p>
+    <h4>
+        Rysowanie wykresów punktowych</h4>
+    <p>
+        Inn¹ mo¿liwoœci¹ jest rysowanie wykresów sk³adaj¹cych siê z serii punktów. W tym
+        celu nale¿y do kolekcji <code>ChartPlotter.DataSeries</code> dodaæ obiekt klasy
+        <code>PointDataSeries</code>. Zawiera ona kolekcjê <code>Points</code> sk³adaj¹c¹ siê ze struktur
+        typu <code>PointDataSeries.ChartPoint</code>. Ka¿dy taki element reprezentuje pojedynczy punkt.</p>
+    <p>
+        Struktura <code>PointDataSeries.ChartPoint</code> zawiera nastêpuj¹ce pola:</p>
+    <dl>
+        <dt><code>Coords</code></dt><dd>wspó³rzêdne punktu</dd><dt><code>Color</code></dt><dd>kolor punktu; jeœli jest to <code>Color.Empty</code>, oznacza to, ¿e punkt ma byæ rysowany w kolorze
+            zgodnym z w³asnoœci¹ <code>ForeColor</code> serii danych.</dd><dt><code>DrawLines</code></dt><dd>okreœla,
+            czy maj¹ byæ rysowane linie ³¹cz¹ce punkt z pocz¹tkiem uk³adu wspó³rzêdnych i osiami</dd><dt><code>Shape</code></dt><dd>kszta³t
+                punktu: okr¹g lub prostok¹t.</dd></dl>
+    <p>
+        Wielkoœæ punktów mo¿na zmieniæ w³asnoœci¹ <code>PointDataSeries.PointSize</code> (byæ mo¿e w
+        przysz³oœci ka¿dy punkt bêdzie móg³ mieæ rozmiar ustalany indywidualnie).</p>
+    <h4>
+        Rysowanie wykresów funkcji dwuargumentowych</h4>
+    <p>
+        Rysowanie wykresów wizualizuj¹cych funkcjê dwuargumentow¹ przy pomocy koloru umo¿liwia
+        klasa <code>Computed2DSeries</code>. Jej u¿ycie jest analogiczne do u¿ycia klasy
+        <code>ComputedDataSeries</code>. Ma ona w³asne wewnêtrzne typy delegatów i funkcji parametryzowanej.</p>
+    <p>
+        Aby narysowaæ odpowiedŸ sieci neuronowej o dwóch wejœciach i dowolnej iloœci wyjœæ,
+        nale¿y u¿yæ klasy <code>NetworkResponseDrawableFunction</code>. Nale¿y pamiêtaæ
+        tylko o tym, ¿e kolory, jakimi zabarwiane s¹ poszczególne wyjœcia, ustawiamy poprzez
+        w³asnoœæ <code>OutputColors</code>. Musi byæ ich przynajmniej tyle ile wyjœæ ma sieæ.</p>
+    <h3>
+        Inne kontrolki</h3>
+    <p>
+        Kontrolka <code>BorderedControl</code> to po prostu kontrolka zawieraj¹ca ramkê.</p>
+    <p>
+        Klasa <code>WizardForm</code> to klasa pozwalaj¹ca na tworzenie kreatorów. Jest to formatka zawieraj¹ca
+        przyciski <em>Dalej</em> i <em>Wstecz</em> oraz kontener na panele typu <code>WizardPanel</code>.
+        Aby z nich skorzystaæ, nale¿y utworzyæ w³asn¹ formatkê dziedzicz¹c¹ z <code>WizardForm</code>
+        oraz w³asne panele dziedzicz¹ce z <code>WizardPanel</code>, nadpisuj¹c metody <code>GetNext()</code> i <code>GetPrevious()</code>
+        oraz w³asnoœci <code>IsFirst</code> i <code>IsLast</code>. Wymienione metody odpowiadaj¹
+        za utworzenie poprzedniego i nastêpnego panela w reakcji na naciœniêcie odpowiedniego
+        przycisku kreatora, natomiast w³asnoœci - za okreœlenie, czy panel jest pierwszy
+        lub ostatni.</p>
+    <p>
+        W formie dziedzicz¹cej po <code>WizardForm</code> wystarczy do w³asnoœci <code>CurrentPanel</code> przypisaæ
+        panel, jaki ma byæ wyœwietlany na pocz¹tku.</p>
+    <p>
+        Nale¿y na razie uwa¿aæ na zmienianie rozmiaru formatki - trzeba to robiæ poprzez
+        przypisanie rozmiaru w kodzie; przypisanie rozmiaru w designerze powoduje zrujnowanie
+        uk³adu kontrolek (to nie jest moja wina, lecz samego designera). Na razie nie znam
+        jeszcze metody na przypisanie rozmiaru skaluj¹cego siê zgodnie z rozdzielczoœci¹
+        DPI ekranu u¿ytkownika. Jakieœ pomys³y?</p>
+</body>
+</html>

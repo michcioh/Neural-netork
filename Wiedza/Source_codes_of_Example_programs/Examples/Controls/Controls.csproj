@@ -1,0 +1,172 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F965BCB1-C181-436E-9928-5598CA657B63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RTadeusiewicz.NN.Controls</RootNamespace>
+    <AssemblyName>RTadeusiewicz.NN.Controls</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BorderedControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BorderedControl.Designer.cs">
+      <DependentUpon>BorderedControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChartPlotter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChartPlotter.Designer.cs">
+      <DependentUpon>ChartPlotter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChartSurface.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChartSurface.Designer.cs">
+      <DependentUpon>ChartSurface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColorField.Designer.cs">
+      <DependentUpon>ColorField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Computed2DSeries.cs" />
+    <Compile Include="ComputedDataSeries.cs" />
+    <Compile Include="CoordinateSystem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CoordinateSystem.Designer.cs">
+      <DependentUpon>CoordinateSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSeries.cs" />
+    <Compile Include="DataSeriesCollection.cs" />
+    <Compile Include="ExplanationToolTip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExplanationToolTip.Designer.cs">
+      <DependentUpon>ExplanationToolTip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryDataSeries.cs" />
+    <Compile Include="HistoryWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryWindow.Designer.cs">
+      <DependentUpon>HistoryWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListDataSeries.cs" />
+    <Compile Include="NetworkResponseDrawableFunction.cs" />
+    <Compile Include="NeuronResponseDrawableFunction.cs" />
+    <Compile Include="NotifyingList.cs" />
+    <Compile Include="PointDataSeries.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WizardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WizardForm.Designer.cs">
+      <DependentUpon>WizardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WizardPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WizardPanel.Designer.cs">
+      <DependentUpon>WizardPanel.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChartPlotter.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ChartPlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChartSurface.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ChartSurface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColorField.resx">
+      <DependentUpon>ColorField.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CoordinateSystem.resx">
+      <DependentUpon>CoordinateSystem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExplanationToolTip.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExplanationToolTip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryWindow.resx">
+      <DependentUpon>HistoryWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WizardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WizardPanel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NeuralNetworks\NeuralNetworks.csproj">
+      <Project>{61A2E4A5-DEC8-4B32-AE8B-4B863054390D}</Project>
+      <Name>NeuralNetworks</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -3,3 +3,8 @@ C:\Michal\VS\Neural\NeuralNetworkDll\bin\Release\NeuralNetwork.pdb
 C:\Michal\VS\Neural\NeuralNetworkDll\obj\Release\NeuralNetworkDll.csproj.CoreCompileInputs.cache
 C:\Michal\VS\Neural\NeuralNetworkDll\obj\Release\NeuralNetwork.dll
 C:\Michal\VS\Neural\NeuralNetworkDll\obj\Release\NeuralNetwork.pdb
+C:\GitHub\Neural-netork\NeuralNetworkDll\bin\Release\NeuralNetwork.dll
+C:\GitHub\Neural-netork\NeuralNetworkDll\bin\Release\NeuralNetwork.pdb
+C:\GitHub\Neural-netork\NeuralNetworkDll\obj\Release\NeuralNetwork.dll
+C:\GitHub\Neural-netork\NeuralNetworkDll\obj\Release\NeuralNetwork.pdb
+C:\GitHub\Neural-netork\NeuralNetworkDll\obj\Release\NeuralNetworkDll.csproj.CoreCompileInputs.cache

@@ -45,9 +45,9 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(8, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(179, 13);
+            this.label2.Size = new System.Drawing.Size(213, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Copyright © Michał Heliński 2018";
+            this.label2.Text = "Copyright © Michał Heliński 2018 - 2021";
             // 
             // panel1
             // 

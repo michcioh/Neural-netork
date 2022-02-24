@@ -104,8 +104,8 @@ namespace Neural
             dgvLayers.Rows.Clear();
             SetRows();
             cbUsesBiasNeurons.Checked = true;
-            nudMinWeight.Value = (Decimal)0;
-            nudMaxWeight.Value = (Decimal)0.3;
+            nudMinWeight.Value = (Decimal) (-1.0);
+            nudMaxWeight.Value = (Decimal) 1.0;
         }
 
         private void BCancel_Click(object sender, EventArgs e)

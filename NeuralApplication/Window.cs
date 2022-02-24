@@ -140,6 +140,16 @@ namespace Neural
             SetMenu(true);
         }
 
+        public void NotifyPercentageChanged(int percentage)
+        {
+            this.Text = "Learning " + percentage+"%";
+        }
+
+        public void NotifyLearningEnds()
+        {
+            this.Text = "Neural network";
+        }
+
         public void NotifyNetworkClosed()
         {
             this.actualNetwork = null;
@@ -212,6 +222,11 @@ namespace Neural
             if (ucNetworkDetails.cbSaveWithoutHistory.Checked)
             {
                 copy.EpochHistory.Clear();
+            }
+
+            if (ucNetworkDetails.cbSaveWithoutAnyHistory.Checked)
+            {
+                copy.RmsErrorHistory.Clear();
             }
 
             Tools.SerializeObject(copy, fiOpenFile.FullName);

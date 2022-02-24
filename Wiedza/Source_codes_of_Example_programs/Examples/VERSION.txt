@@ -1,0 +1,13 @@
+These are example programs for the book
+"Discovering neural network proprieties by means of C# programs" 
+("Odkrywanie w³aœciwoœci sieci neuronowych przy u¿yciu programów w jêzyku C#").
+
+Current version of this package is 1.1.
+
+Version history:
+
+1.1
+Changes:
+	- Corrected layout of Example 08a.
+
+1.0 - the first release, published on the official book's website.
